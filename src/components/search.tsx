@@ -13,24 +13,24 @@ import { CstSearchListType } from "./menu-list";
 import { fuseOptionsType } from "./type";
 
 type Props = {
-  CstSearchList: {
+  cstSearchData: {
     list: CstSearchListType[];
-    listTitle?: string;
+    categoryName?: string;
   }[];
   defaultSearchList: {
     list: {
       item: CstSearchListType;
     }[];
-    listTitle?: string;
+    categoryName?: string;
   }[];
   fuseOptions?: fuseOptionsType;
 };
 
 export function CustomWebSearch({
-  CstSearchList,
+  cstSearchData,
   defaultSearchList,
   fuseOptions = {
-    threshold: 0.4,
+    includeScore: true,
     keys: ["title", "label"],
   },
 }: Props): React.ReactElement {
@@ -137,7 +137,7 @@ export function CustomWebSearch({
         <DropDown
           fuseOptions={fuseOptions}
           searchValue={value}
-          searchData={CstSearchList}
+          cstSearchData={cstSearchData}
           defaultSearchList={defaultSearchList}
         />
       ) : null}

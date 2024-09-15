@@ -2,36 +2,32 @@ import { IoSearchSharp } from "react-icons/io5";
 import { CustomWebSearch } from "./components";
 
 export default function App() {
-  const CstSearchList = [
+  const cstSearchData = [
     {
       list: [
         {
-          title: "CstSearchList 1.1",
-          label: "Default for react on the web",
-          icon: IoSearchSharp,
+          title: "User Settings",
         },
         {
-          title: "CstSearchList 1.2",
-          label: "Default for react on the web",
-          icon: IoSearchSharp,
+          title: "Team Settings",
+          label: "Add members, create teams",
         },
       ],
-      listTitle: "CstSearchList 1",
+      categoryName: "Settings",
     },
     {
       list: [
         {
-          title: "CstSearchList 2.1",
-          label: "Default for react on the web",
+          title: "Category List",
+          label: "Your category list",
           icon: IoSearchSharp,
         },
         {
-          title: "CstSearchList 2.2",
-          label: "Default for react on the web",
+          title: "Category Detail",
           icon: IoSearchSharp,
         },
       ],
-      listTitle: "CstSearchList 2",
+      categoryName: "Category",
     },
   ];
 
@@ -40,39 +36,39 @@ export default function App() {
       list: [
         {
           item: {
-            title: "sjndfkdsnfjsjnsdfkjsnd Search 1.1",
-            label: "Search for react on the web",
-            icon: IoSearchSharp,
+            title: "Profile",
+            label: "View your profile",
           },
         },
       ],
-      listTitle: "Default Search 1",
+      categoryName: "Profile",
     },
     {
       list: [
         {
           item: {
-            title: "Default Search 2.1",
-            label: "Search for react on the web",
-            icon: IoSearchSharp,
+            title: "Payment",
           },
         },
         {
           item: {
-            title: "Default Search 2.2",
-            label: "Search for react on the web",
-            icon: IoSearchSharp,
+            title: "Billing",
+          },
+        },
+        {
+          item: {
+            title: "Subscription",
           },
         },
       ],
-      listTitle: "Default Search 2",
+      categoryName: "Account",
     },
   ];
   return (
     <div className="w-full h-screen flex flex-row items-center justify-center">
       <CustomWebSearch
         defaultSearchList={defaultSearchList}
-        CstSearchList={CstSearchList}
+        cstSearchData={cstSearchData}
       />
     </div>
   );
