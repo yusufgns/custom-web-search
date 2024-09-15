@@ -10,13 +10,13 @@ type Props = {
   searchData: {
     list: CstSearchListType[];
     listTitle?: string;
-  };
+  }[];
   defaultSearchList: {
     list: {
       item: CstSearchListType;
     }[];
     listTitle?: string;
-  };
+  }[];
   searchValue: string;
   fuseOptions?: fuseOptionsType;
 };
@@ -27,18 +27,31 @@ export function DropDown({
   searchData,
   fuseOptions,
 }: Props): React.ReactElement {
-  const getSearchList = () => {
-    const fuseSearchData = fuseSearch(
-      searchData.list,
-      searchValue,
-      fuseOptions
-    );
-    if (fuseSearchData?.length > 0 || searchValue.length > 0) {
-      return fuseSearchData;
-    } else {
-      return defaultSearchList.list;
-    }
+  // const getSearchList = () => {
+  //   const fuseSearchData = fuseSearch(
+  //     searchData.list,
+  //     searchValue,
+  //     fuseOptions
+  //   );
+  //   if (fuseSearchData?.length > 0 || searchValue.length > 0) {
+  //     return fuseSearchData;
+  //   } else {
+  //     return defaultSearchList.list;
+  //   }
+  // };
+
+  const getDefaultSearchList = () => {
+    console.log(defaultSearchList);
+    return defaultSearchList
+      .map((item) => {
+        const itemList = item.list.map((i) => i.item);
+        const result = fuseSearch(itemList, searchValue, fuseOptions);
+        return result.length > 0 ? result : null;
+      })
+      .filter((result) => result !== null);
   };
+
+  console.log(getDefaultSearchList());
 
   return (
     <div
@@ -48,14 +61,14 @@ export function DropDown({
         "border border-gray-300 overflow-hidden"
       )}
     >
-      {getSearchList()?.length > 0 ? (
+      {/* {getSearchList()?.length > 0 ? (
         <>
           <MenuListSection searchList={getSearchList()} />
           <DropDownKeyList />
         </>
       ) : (
         <NoDataFound searchValue={searchValue} />
-      )}
+      )} */}
     </div>
   );
 }

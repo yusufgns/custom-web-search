@@ -16,13 +16,13 @@ type Props = {
   CstSearchList: {
     list: CstSearchListType[];
     listTitle?: string;
-  };
+  }[];
   defaultSearchList: {
     list: {
       item: CstSearchListType;
     }[];
     listTitle?: string;
-  };
+  }[];
   fuseOptions?: fuseOptionsType;
 };
 
