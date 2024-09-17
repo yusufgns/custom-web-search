@@ -11,6 +11,7 @@ export default function App() {
         {
           title: "Team Settings",
           label: "Add members, create teams",
+          icon: IoSearchSharp,
         },
       ],
       categoryName: "Settings",

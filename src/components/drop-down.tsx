@@ -72,7 +72,7 @@ export function DropDown({
       className={cn(
         "absolute flex flex-col w-[355px] select-none ",
         "rounded-lg mt-[6px]",
-        "border border-gray-300 overflow-hidden"
+        "border border-gray-100 overflow-hidden"
       )}
     >
       {getSearchList()?.length > 0 ? (

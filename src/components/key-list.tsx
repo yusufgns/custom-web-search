@@ -30,7 +30,7 @@ export const CstKeyList: CstKeyListProps[] = [
 
 export function DropDownKeyList(): React.ReactElement {
   return (
-    <div className="h-[36px] bg-gray-50 w-full border-t-gray-300 border-t-[1px] px-4 flex items-center hover:cursor-default">
+    <div className="h-[36px] bg-gray-50 w-full border-t-gray-100 border-t-[1px] px-4 flex items-center hover:cursor-default">
       <div className="flex items-center gap-4">
         {CstKeyList.map((item, index) => (
           <div key={index} className="flex items-center gap-2">
