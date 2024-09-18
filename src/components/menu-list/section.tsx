@@ -1,12 +1,15 @@
 import React, { useCallback } from "react";
 import { MenuListRow, CstSearchListType } from ".";
-import { Icon } from "..";
+import { cn } from "../../utils/cn";
 
 type Props = {
   searchList: {
-    item: CstSearchListType;
+    data: {
+      item: CstSearchListType;
+      refIndex?: number;
+    }[];
+    categoryName?: string;
   }[];
-  refIndex?: number;
 };
 
 export function MenuListSection({ searchList }: Props): React.ReactElement {
@@ -20,25 +23,38 @@ export function MenuListSection({ searchList }: Props): React.ReactElement {
   );
 
   return (
-    <div className="pt-2">
-      {searchList?.map((item, index) => (
+    <div className="pt-2 max-h-64 overflow-scroll">
+      {searchList?.map((e) => (
         <div
+          className={cn(searchList.indexOf(e) === 0 ? "" : "pt-2")}
           key={
-            item?.item?.title + "-custom-web-search-menu-list-section" + index
+            e?.categoryName +
+            "-custom-web-search-menu-list-container" +
+            Math.random()
           }
-          className="flex hover:cursor-pointer items-start justify-start content-start gap-2 px-4 py-2 hover:bg-gray-50 hover:bg-opacity-70"
-          onClick={(e: never) => handleRowClick(e, () => item.item.action)}
         >
-          {item?.item?.icon ? (
-            <div className="min-w-4 min-h-4">
-              <Icon
-                item={{
-                  icon: item?.item?.icon ?? null,
-                }}
-              />
-            </div>
+          {e?.categoryName ? (
+            <p className="px-4 text-xs">{e?.categoryName}</p>
           ) : null}
-          <MenuListRow title={item?.item?.title} label={item?.item?.label} />
+          {e?.data?.map((item) => {
+            const data = item?.item;
+            return (
+              <div
+                key={item?.item?.title + "-custom-web-search-menu-list-section"}
+              >
+                <div
+                  className="flex hover:cursor-pointer items-start justify-start content-start gap-2 px-4 py-1 hover:bg-gray-50 hover:bg-opacity-70"
+                  onClick={(e: never) => handleRowClick(e, () => data.action)}
+                >
+                  <MenuListRow
+                    icon={data?.icon}
+                    title={data?.title}
+                    label={data?.label}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       ))}
     </div>

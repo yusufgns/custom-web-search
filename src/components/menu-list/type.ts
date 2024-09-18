@@ -9,5 +9,5 @@ export interface CstSearchListType {
 
 export interface CstSearchDataType {
   list: CstSearchListType[];
-  listTitle?: string;
+  categoryName?: string;
 }
