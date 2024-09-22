@@ -35,14 +35,14 @@ export function CustomWebSearch({
   },
 }: Props): React.ReactElement {
   const isFocused = useBoolean(false);
-  const [value, setValue] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const componentRef = useRef<HTMLDivElement>(null);
   const wasFocused = useBoolean(false);
 
   const handleChangeSearch = useCallback(
     (e: { target: { value: SetStateAction<string> } }) => {
-      setValue(e.target.value);
+      setSearchValue(e.target.value);
     },
     []
   );
@@ -53,11 +53,11 @@ export function CustomWebSearch({
       e.stopPropagation();
       if (wasFocused.value) {
         inputRef?.current?.focus();
-        setValue("");
+        setSearchValue("");
         return;
       }
 
-      setValue("");
+      setSearchValue("");
     },
     [wasFocused.value]
   );
@@ -106,7 +106,7 @@ export function CustomWebSearch({
           <input
             ref={inputRef}
             type="text"
-            value={value}
+            value={searchValue}
             placeholder="Search or ask ..."
             className={cn(
               "outline-none w-full",
@@ -123,7 +123,7 @@ export function CustomWebSearch({
           />
         </div>
 
-        {value ? (
+        {searchValue ? (
           <button
             className=" hover:text-black text-nowrap ml-2 text-xs select-none"
             onClick={handleClearSearch}
@@ -135,8 +135,9 @@ export function CustomWebSearch({
 
       {wasFocused.value ? (
         <DropDown
+          wasFocused={wasFocused}
           fuseOptions={fuseOptions}
-          searchValue={value}
+          searchValue={searchValue}
           cstSearchData={cstSearchData}
           defaultSearchList={defaultSearchList}
         />
