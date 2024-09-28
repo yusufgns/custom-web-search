@@ -74,7 +74,7 @@ export function DropDown({
   return (
     <div
       className={cn(
-        "absolute flex flex-col w-[355px] select-none ",
+        "absolute flex flex-col w-[355px] select-none bg-white",
         "rounded-lg mt-[6px]",
         "border border-gray-100 overflow-hidden"
       )}

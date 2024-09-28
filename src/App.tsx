@@ -1,5 +1,5 @@
 import { IoSearchSharp } from "react-icons/io5";
-import { CustomWebSearch } from "./components";
+import { CustomWebSearch, CstWebSearchPopup } from "./components";
 import { CstSearchDataType, CstSearchListType } from "./components/menu-list";
 
 export default function App() {
@@ -97,7 +97,7 @@ export default function App() {
     ];
   return (
     <div className="w-full h-screen flex flex-row items-center justify-center">
-      <CustomWebSearch
+      <CstWebSearchPopup
         defaultSearchList={defaultSearchList}
         cstSearchData={cstSearchData}
       />
