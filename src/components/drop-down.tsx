@@ -19,6 +19,9 @@ type Props = {
   }[];
   searchValue: string;
   fuseOptions?: fuseOptionsType;
+  wasFocused: {
+    value: boolean;
+  }
 };
 
 export function DropDown({
@@ -26,6 +29,7 @@ export function DropDown({
   searchValue,
   cstSearchData,
   fuseOptions,
+  wasFocused
 }: Props): React.ReactElement {
   const getDefaultSearchList = () => {
     return defaultSearchList
@@ -70,14 +74,14 @@ export function DropDown({
   return (
     <div
       className={cn(
-        "absolute flex flex-col w-[355px] select-none ",
+        "absolute flex flex-col w-[355px] select-none bg-white",
         "rounded-lg mt-[6px]",
         "border border-gray-100 overflow-hidden"
       )}
     >
       {getSearchList()?.length > 0 ? (
         <>
-          <MenuListSection searchList={getSearchList()} />
+          <MenuListSection searchValue={searchValue} wasFocused={wasFocused} searchList={getSearchList()} />
           <DropDownKeyList />
         </>
       ) : (
